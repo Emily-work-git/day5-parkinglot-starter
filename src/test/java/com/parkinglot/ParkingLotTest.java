@@ -67,4 +67,18 @@ public class ParkingLotTest {
         String expectedOutput = "Unrecognized parking ticket.";
         assertThat(exception.getMessage()).isEqualTo(expectedOutput);
     }
+    @Test
+    public void should_print_unrecognized_ticket_error_when_fetch_given_used_ticket() {
+        // Given
+        ParkingLot parkingLot = new ParkingLot();
+        Car car = new Car();
+        Ticket usedTicket = parkingLot.park(car);
+        usedTicket.setUsed();
+        // When
+        UnrecognizedTicketException exception = assertThrows(UnrecognizedTicketException.class,
+                ()->parkingLot.fetch(usedTicket));
+        // Then
+        String expectedOutput = "Unrecognized parking ticket.";
+        assertThat(exception.getMessage()).isEqualTo(expectedOutput);
+    }
 }
