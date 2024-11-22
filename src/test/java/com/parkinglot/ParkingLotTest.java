@@ -3,6 +3,7 @@ package com.parkinglot;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class ParkingLotTest {
     @Test
@@ -42,27 +43,6 @@ public class ParkingLotTest {
         assertEquals(car2, fetchedCar2);
     }
     @Test
-    public void should_return_nothing_when_fetch_given_wrong_ticket(){
-        // Given
-        ParkingLot parkingLot = new ParkingLot();
-        Ticket wrongTicket = new Ticket();
-        // When
-        Car fetchedCar = parkingLot.fetch(wrongTicket);
-        // Then
-        assertNull(fetchedCar);
-    }
-    @Test
-    public void should_return_nothing_when_fetch_given_used_ticket(){
-        // Given
-        ParkingLot parkingLot = new ParkingLot();
-        Ticket usedTicket = new Ticket();
-        usedTicket.setUsed();
-        // When
-        Car fetchedCar = parkingLot.fetch(usedTicket);
-        // Then
-        assertNull(fetchedCar);
-    }
-    @Test
     public void should_return_nothing_when_park_given_parkingLot_is_full_and_a_car(){
         // Given
         ParkingLot parkingLot = new ParkingLot();
@@ -72,5 +52,20 @@ public class ParkingLotTest {
         Ticket ticket = parkingLot.park(car);
         // Then
         assertNull(ticket);
+    }
+    @Test
+    public void should_print_unrecognized_ticket_error_when_fetch_given_wrong_ticket() {
+        // Given
+        ParkingLot parkingLot = new ParkingLot();
+        Car car = new Car();
+        parkingLot.park(car);
+        Ticket wrongTicket = new Ticket();
+        wrongTicket.setUsed();
+        // When
+        UnrecognizedTicketException exception = assertThrows(UnrecognizedTicketException.class,
+                ()->parkingLot.fetch(wrongTicket));
+        // Then
+        String expectedOutput = "Unrecognized parking ticket.";
+        assertThat(exception.getMessage()).isEqualTo(expectedOutput);
     }
 }

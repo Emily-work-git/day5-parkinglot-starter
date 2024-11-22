@@ -23,14 +23,11 @@ public class ParkingLot {
     }
 
     public Car fetch(Ticket ticket) {
-        if (ticket.isUsed()){
-            return null;
+        if (ticket.isUsed() || parkingRecord.get(ticket) == null){
+            throw new UnrecognizedTicketException();
         }
-        Car fetchedCar = parkingRecord.get(ticket);
-        if (fetchedCar != null){
-            availableSlots++;
-        }
-        return fetchedCar;
+        availableSlots++;
+        return parkingRecord.get(ticket);
     }
 
     public void setAvailableSlots(int availableSlots) {
