@@ -60,7 +60,6 @@ public class ParkingLotTest {
         Car car = new Car();
         parkingLot.park(car);
         Ticket wrongTicket = new Ticket();
-        wrongTicket.setUsed();
         // When
         UnrecognizedTicketException exception = assertThrows(UnrecognizedTicketException.class,
                 ()->parkingLot.fetch(wrongTicket));
