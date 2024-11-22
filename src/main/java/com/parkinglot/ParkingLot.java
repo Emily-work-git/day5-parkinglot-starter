@@ -12,6 +12,9 @@ public class ParkingLot {
     }
 
     public Car fetch(Ticket ticket) {
-        return parkingRecord.get(ticket);
+        if (!ticket.isUsed()){
+            return parkingRecord.get(ticket);
+        }
+        return null;
     }
 }
