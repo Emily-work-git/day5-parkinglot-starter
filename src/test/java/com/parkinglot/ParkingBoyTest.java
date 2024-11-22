@@ -118,4 +118,22 @@ public class ParkingBoyTest {
         // Then
         assertEquals(parkedParkingLot, parkingLot1);
     }
+    @Test
+    public void should_park_to_second_parking_lot_when_park_given_two_available_parking_lot_and_the_first_parkinglot_is_full() {
+        // Given
+        ParkingBoy parkingBoy = new ParkingBoy();
+        ParkingLot parkingLot1 = new ParkingLot();
+        ParkingLot parkingLot2 = new ParkingLot();
+        parkingBoy.addParkingLot(parkingLot1);
+        parkingBoy.addParkingLot(parkingLot2);
+        for (int i = 0; i < 10; i++) {
+            parkingBoy.park(new Car());
+        }
+        Car car = new Car();
+        // When
+        Ticket ticket = parkingBoy.park(car);
+        ParkingLot parkedParkingLot = parkingBoy.getParkingLotByTicket(ticket);
+        // Then
+        assertEquals(parkedParkingLot, parkingLot2);
+    }
 }
