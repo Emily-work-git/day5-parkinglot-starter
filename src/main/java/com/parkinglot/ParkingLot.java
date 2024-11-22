@@ -14,7 +14,7 @@ public class ParkingLot {
 
     public Ticket park(Car car) {
         if (availableSlots == 0){
-            return null;
+            throw new NoAvailablePositionException();
         }
         Ticket ticket = new Ticket();
         parkingRecord.put(ticket, car);
