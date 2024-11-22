@@ -33,4 +33,7 @@ public class ParkingLot {
     public void setAvailableSlots(int availableSlots) {
         this.availableSlots = availableSlots;
     }
+    public int getAvailableSlots() {
+        return this.availableSlots;
+    }
 }

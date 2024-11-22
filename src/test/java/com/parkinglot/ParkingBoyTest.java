@@ -7,32 +7,40 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ParkingBoyTest {
     @Test
-    public void should_return_ticket_when_park_given_a_car(){
+    public void should_return_ticket_when_park_given_a_car() {
         // Given
         ParkingBoy parkingBoy = new ParkingBoy();
         Car car = new Car();
+        ParkingLot parkingLot = new ParkingLot();
+        parkingBoy.addParkingLot(parkingLot);
         // When
         Ticket ticket = parkingBoy.park(car);
         // Then
         assertNotNull(ticket);
     }
+
     @Test
-    public void should_return_car_when_fetch_given_a_car(){
+    public void should_return_car_when_fetch_given_a_car() {
         // Given
         ParkingBoy parkingBoy = new ParkingBoy();
         Car car = new Car();
+        ParkingLot parkingLot = new ParkingLot();
+        parkingBoy.addParkingLot(parkingLot);
         Ticket ticket = parkingBoy.park(car);
         // When
         Car fetchedCar = parkingBoy.fetch(ticket);
         // Then
-        assertEquals(car,fetchedCar);
+        assertEquals(car, fetchedCar);
     }
+
     @Test
     public void should_return_the_corresponding_ticket_of_a_car_when_fetch_given_two_fetch_request() {
         // Given
         ParkingBoy parkingBoy = new ParkingBoy();
         Car car1 = new Car();
         Car car2 = new Car();
+        ParkingLot parkingLot = new ParkingLot();
+        parkingBoy.addParkingLot(parkingLot);
         Ticket ticket1 = parkingBoy.park(car1);
         Ticket ticket2 = parkingBoy.park(car2);
         // When
@@ -42,11 +50,14 @@ public class ParkingBoyTest {
         assertEquals(car1, fetchedCar1);
         assertEquals(car2, fetchedCar2);
     }
+
     @Test
     public void should_print_unrecognized_ticket_error_when_fetch_given_wrong_ticket() {
         // Given
         ParkingBoy parkingBoy = new ParkingBoy();
         Car car = new Car();
+        ParkingLot parkingLot = new ParkingLot();
+        parkingBoy.addParkingLot(parkingLot);
         parkingBoy.park(car);
         Ticket wrongTicket = new Ticket();
         // When
@@ -56,11 +67,14 @@ public class ParkingBoyTest {
         String expectedOutput = "Unrecognized parking ticket.";
         assertThat(exception.getMessage()).isEqualTo(expectedOutput);
     }
+
     @Test
     public void should_print_unrecognized_ticket_error_when_fetch_given_used_ticket() {
         // Given
         ParkingBoy parkingBoy = new ParkingBoy();
         Car car = new Car();
+        ParkingLot parkingLot = new ParkingLot();
+        parkingBoy.addParkingLot(parkingLot);
         Ticket usedTicket = parkingBoy.park(car);
         usedTicket.setUsed();
         // When
@@ -70,11 +84,14 @@ public class ParkingBoyTest {
         String expectedOutput = "Unrecognized parking ticket.";
         assertThat(exception.getMessage()).isEqualTo(expectedOutput);
     }
+
     @Test
     public void should_print_no_available_position_error_when_park_given_full_parking_lot() {
         // Given
         ParkingBoy parkingBoy = new ParkingBoy();
-        for (int i=0;i<10;i++){
+        ParkingLot parkingLot = new ParkingLot();
+        parkingBoy.addParkingLot(parkingLot);
+        for (int i = 0; i < 10; i++) {
             parkingBoy.park(new Car());
         }
         Car car = new Car();
@@ -84,5 +101,21 @@ public class ParkingBoyTest {
         // Then
         String expectedOutput = "No available position.";
         assertThat(exception.getMessage()).isEqualTo(expectedOutput);
+    }
+
+    @Test
+    public void should_park_to_first_parking_lot_when_park_given_two_available_parking_lot() {
+        // Given
+        ParkingBoy parkingBoy = new ParkingBoy();
+        ParkingLot parkingLot1 = new ParkingLot();
+        ParkingLot parkingLot2 = new ParkingLot();
+        parkingBoy.addParkingLot(parkingLot1);
+        parkingBoy.addParkingLot(parkingLot2);
+        Car car = new Car();
+        // When
+        Ticket ticket = parkingBoy.park(car);
+        ParkingLot parkedParkingLot = parkingBoy.getParkingLotByTicket(ticket);
+        // Then
+        assertEquals(parkedParkingLot, parkingLot1);
     }
 }
