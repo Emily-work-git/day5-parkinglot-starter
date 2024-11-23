@@ -8,12 +8,12 @@ public class ParkingLot {
     private Map<Ticket, Car> parkingRecord = new HashMap<>();
     private int availableSlots;
 
-    public ParkingLot(){
+    public ParkingLot() {
         availableSlots = CAPACITY;
     }
 
     public Ticket park(Car car) {
-        if (availableSlots == 0){
+        if (availableSlots == 0) {
             throw new NoAvailablePositionException();
         }
         Ticket ticket = new Ticket();
@@ -23,7 +23,7 @@ public class ParkingLot {
     }
 
     public Car fetch(Ticket ticket) {
-        if (ticket.isUsed() || parkingRecord.get(ticket) == null){
+        if (ticket.isUsed() || parkingRecord.get(ticket) == null) {
             throw new UnrecognizedTicketException();
         }
         availableSlots++;
@@ -34,6 +34,7 @@ public class ParkingLot {
     public void setAvailableSlots(int availableSlots) {
         this.availableSlots = availableSlots;
     }
+
     public int getAvailableSlots() {
         return this.availableSlots;
     }

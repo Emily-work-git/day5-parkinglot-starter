@@ -118,6 +118,7 @@ public class ParkingBoyTest {
         // Then
         assertEquals(parkedParkingLot, parkingLot1);
     }
+
     @Test
     public void should_park_to_second_parking_lot_when_park_given_two_available_parking_lot_and_the_first_parkinglot_is_full() {
         // Given
@@ -136,6 +137,7 @@ public class ParkingBoyTest {
         // Then
         assertEquals(parkedParkingLot, parkingLot2);
     }
+
     @Test
     public void should_return_correct_car_with_each_ticket_when_fetch_twice_given_two_parking_lots_and_two_tickets() {
         // Given
@@ -152,9 +154,10 @@ public class ParkingBoyTest {
         Car fetchedCar1 = parkingBoy.fetch(ticket1);
         Car fetchedCar2 = parkingBoy.fetch(ticket2);
         // Then
-        assertEquals(car1,fetchedCar1);
-        assertEquals(car2,fetchedCar2);
+        assertEquals(car1, fetchedCar1);
+        assertEquals(car2, fetchedCar2);
     }
+
     @Test
     public void should_return_unrecognized_ticket_error_when_fetch_given_two_parking_lot_and_wrong_ticket() {
         // Given
@@ -171,6 +174,7 @@ public class ParkingBoyTest {
         String expectedOutput = "Unrecognized parking ticket.";
         assertThat(exception.getMessage()).isEqualTo(expectedOutput);
     }
+
     @Test
     public void should_return_unrecognized_ticket_error_when_fetch_given_two_parking_lot_and_a_used_ticket() {
         // Given
@@ -189,6 +193,7 @@ public class ParkingBoyTest {
         String expectedOutput = "Unrecognized parking ticket.";
         assertThat(exception.getMessage()).isEqualTo(expectedOutput);
     }
+
     @Test
     public void should_return_no_available_position_error_when_park_given_two_parking_lot_without_any_position() {
         // Given
@@ -197,7 +202,7 @@ public class ParkingBoyTest {
         ParkingLot parkingLot2 = new ParkingLot();
         parkingBoy.addParkingLot(parkingLot1);
         parkingBoy.addParkingLot(parkingLot2);
-        for (int i = 0; i<20; i++){
+        for (int i = 0; i < 20; i++) {
             parkingBoy.park(new Car());
         }
         // When

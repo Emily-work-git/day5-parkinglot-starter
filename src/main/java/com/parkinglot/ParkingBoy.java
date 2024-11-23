@@ -5,19 +5,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ParkingBoy extends ParkingLot{
+public class ParkingBoy extends ParkingLot {
     private List<ParkingLot> parkingLots = new ArrayList<>();
     private Map<Ticket, ParkingLot> ticketToParkingLotRecord = new HashMap<>();
 
-
-    public void ParkingBoy(){
+    public void ParkingBoy() {
     }
-    public void addParkingLot(ParkingLot parkingLot){
+
+    public void addParkingLot(ParkingLot parkingLot) {
         parkingLots.add(parkingLot);
     }
-    public Ticket park (Car car){
-        for (int i=0;i< parkingLots.size();i++){
-            if (parkingLots.get(i).getAvailableSlots()>0){
+
+    public Ticket park(Car car) {
+        for (int i = 0; i < parkingLots.size(); i++) {
+            if (parkingLots.get(i).getAvailableSlots() > 0) {
                 Ticket ticket = parkingLots.get(i).park(car);
                 ticketToParkingLotRecord.put(ticket, parkingLots.get(i));
                 return ticket;
@@ -25,14 +26,16 @@ public class ParkingBoy extends ParkingLot{
         }
         throw new NoAvailablePositionException();
     }
-    public Car fetch (Ticket ticket){
-        if (ticketToParkingLotRecord.get(ticket) == null){
+
+    public Car fetch(Ticket ticket) {
+        if (ticketToParkingLotRecord.get(ticket) == null) {
             throw new UnrecognizedTicketException();
         }
         return ticketToParkingLotRecord.get(ticket).fetch(ticket);
     }
-    public ParkingLot getParkingLotByTicket(Ticket ticket){
-        if (ticketToParkingLotRecord.get(ticket) == null){
+
+    public ParkingLot getParkingLotByTicket(Ticket ticket) {
+        if (ticketToParkingLotRecord.get(ticket) == null) {
             throw new UnrecognizedTicketException();
         }
         return ticketToParkingLotRecord.get(ticket);
