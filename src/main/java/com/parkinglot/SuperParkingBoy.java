@@ -6,8 +6,7 @@ public class SuperParkingBoy extends ParkingBoy{
     @Override
     public Ticket park(Car car) {
         ParkingLot parkingLotWithMaxSlots = parkingLots.stream().max(
-                Comparator.comparingDouble(parkingLot ->
-                        (double) parkingLot.getAvailableSlots() / parkingLot.getCapacity())).
+                Comparator.comparingDouble(ParkingLot::getAvailablePositionRate)).
                 orElseThrow(NoAvailablePositionException::new);
 
         Ticket ticket = parkingLotWithMaxSlots.park(car);

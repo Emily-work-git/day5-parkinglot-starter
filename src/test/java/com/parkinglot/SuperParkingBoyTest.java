@@ -26,16 +26,20 @@ public class SuperParkingBoyTest {
     @Test
     public void should_return_second_parking_lot_when_park_given_the_second_parking_lot_has_larger_available_position_rate(){
         // Given
-        SmartParkingBoy smartParkingBoy = new SmartParkingBoy();
+        SuperParkingBoy smartParkingBoy = new SuperParkingBoy();
         ParkingLot parkingLot1 = new ParkingLot();
         ParkingLot parkingLot2 = new ParkingLot(20);
         smartParkingBoy.addParkingLot(parkingLot1);
         smartParkingBoy.addParkingLot(parkingLot2);
-        Car car = new Car();
+        Car car1 = new Car();
+        Ticket ticket1 = smartParkingBoy.park(car1);
+        Car car2 = new Car();
+        Ticket ticket2 = smartParkingBoy.park(car2);
+        Car car3 = new Car();
         // When
-        Ticket ticket = smartParkingBoy.park(car);
+        Ticket ticket3 = smartParkingBoy.park(car3);
         // Then
-        ParkingLot parkedParkingLot = smartParkingBoy.getParkingLotByTicket(ticket);
+        ParkingLot parkedParkingLot = smartParkingBoy.getParkingLotByTicket(ticket3);
         assertEquals(parkingLot2,parkedParkingLot);
     }
     @Test

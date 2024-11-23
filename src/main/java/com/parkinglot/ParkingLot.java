@@ -15,7 +15,7 @@ public class ParkingLot {
 
     public ParkingLot(int capacity) {
         this.capacity = capacity;
-        availableSlots = this.capacity;
+        availableSlots = capacity;
     }
 
     public Ticket park(Car car) {
@@ -47,5 +47,8 @@ public class ParkingLot {
 
     public int getCapacity() {
         return this.capacity;
+    }
+    public double getAvailablePositionRate(){
+        return ((double) this.availableSlots /this.capacity);
     }
 }
