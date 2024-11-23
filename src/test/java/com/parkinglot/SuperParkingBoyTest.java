@@ -36,4 +36,23 @@ public class SuperParkingBoyTest {
         ParkingLot parkedParkingLot = smartParkingBoy.getParkingLotByTicket(ticket);
         assertEquals(parkingLot2,parkedParkingLot);
     }
+    @Test
+    public void should_right_car_for_each_ticket_when_fetch_with_two_ticket_given_the_two_parking_lot_and_two_ticket(){
+        // Given
+        SuperParkingBoy superParkingBoy = new SuperParkingBoy();
+        ParkingLot parkingLot1 = new ParkingLot();
+        ParkingLot parkingLot2 = new ParkingLot();
+        superParkingBoy.addParkingLot(parkingLot1);
+        superParkingBoy.addParkingLot(parkingLot2);
+        Car car1 = new Car();
+        Ticket ticket1 = superParkingBoy.park(car1);
+        Car car2 = new Car();
+        Ticket ticket2 = superParkingBoy.park(car2);
+        // When
+        Car fetchedCar1 = superParkingBoy.fetch(ticket1);
+        Car fetchedCar2 = superParkingBoy.fetch(ticket2);
+        // Then
+        assertEquals(car1,fetchedCar1);
+        assertEquals(car2,fetchedCar2);
+    }
 }
