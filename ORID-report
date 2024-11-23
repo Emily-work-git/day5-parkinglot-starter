@@ -1,0 +1,12 @@
+ORID Report - Emily
+Objective: What Did We Learn Today?
+Today we practice TDD and OOP with the Parking Lot exercise, ensuring every feature is wrapped with appropriate test case, and the introduction of new feature would not break the existing functionality. Through the practice, we also learnt to put the OOP concept, such encapsulation, inheritance, and polymorphism in to use.
+
+Reflective: My Feelings
+I was relieved when seeing my new code change could pass the existing test cases. 
+
+Interpretive: Why?
+I have always been worried about making new changes to my code may break the existing logic, and introduce some new bugs or unexpected behavior to my program. By adopting the TDD approach, all my features are properly wrapped with test case, I could guarantee that my program is well tested and behaved as expected by running my test cases. Although the process of writing test case is tedious and time-consuming, it help speed up debugging and strengthen my confident when introducing code change and refactoring.
+
+Direction: Action Points - What Changes Will I Make?
+Moving forward, I plan to adopt TDD in my projects, ensuring that my features are accompanied by sufficient test cases and are thoroughly tested before committing. Yet, I also found myself inexperienced with OOP. To address this gap in my knowledge, I plan to dedicate more time to further study OOP principles and best practices.
