@@ -155,4 +155,20 @@ public class ParkingBoyTest {
         assertEquals(car1,fetchedCar1);
         assertEquals(car2,fetchedCar2);
     }
+    @Test
+    public void should_return_unrecognized_ticket_error_when_fetch_given_two_parking_lot_and_wrong_ticket() {
+        // Given
+        ParkingBoy parkingBoy = new ParkingBoy();
+        ParkingLot parkingLot1 = new ParkingLot();
+        ParkingLot parkingLot2 = new ParkingLot();
+        parkingBoy.addParkingLot(parkingLot1);
+        parkingBoy.addParkingLot(parkingLot2);
+        Ticket wrongticket = new Ticket();
+        // When
+        UnrecognizedTicketException exception = assertThrows(UnrecognizedTicketException.class,
+                () -> parkingBoy.fetch(wrongticket));
+        // Then
+        String expectedOutput = "Unrecognized parking ticket.";
+        assertThat(exception.getMessage()).isEqualTo(expectedOutput);
+    }
 }
