@@ -27,6 +27,7 @@ public class ParkingLot {
             throw new UnrecognizedTicketException();
         }
         availableSlots++;
+        ticket.setUsed();
         return parkingRecord.get(ticket);
     }
 
