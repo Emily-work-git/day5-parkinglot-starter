@@ -4,12 +4,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ParkingLot {
-    public static final int CAPACITY = 10;
+    private int capacity;
     private Map<Ticket, Car> parkingRecord = new HashMap<>();
     private int availableSlots;
 
     public ParkingLot() {
-        availableSlots = CAPACITY;
+        capacity = 10;
+        availableSlots = capacity;
+    }
+
+    public ParkingLot(int capacity) {
+        this.capacity = capacity;
+        availableSlots = this.capacity;
     }
 
     public Ticket park(Car car) {
@@ -37,5 +43,9 @@ public class ParkingLot {
 
     public int getAvailableSlots() {
         return this.availableSlots;
+    }
+
+    public int getCapacity() {
+        return this.capacity;
     }
 }
