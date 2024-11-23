@@ -26,20 +26,20 @@ public class SuperParkingBoyTest {
     @Test
     public void should_return_second_parking_lot_when_park_given_the_second_parking_lot_has_larger_available_position_rate(){
         // Given
-        SuperParkingBoy smartParkingBoy = new SuperParkingBoy();
+        SuperParkingBoy superParkingBoy = new SuperParkingBoy();
         ParkingLot parkingLot1 = new ParkingLot();
         ParkingLot parkingLot2 = new ParkingLot(20);
-        smartParkingBoy.addParkingLot(parkingLot1);
-        smartParkingBoy.addParkingLot(parkingLot2);
+        superParkingBoy.addParkingLot(parkingLot1);
+        superParkingBoy.addParkingLot(parkingLot2);
         Car car1 = new Car();
-        Ticket ticket1 = smartParkingBoy.park(car1);
+        Ticket ticket1 = superParkingBoy.park(car1);
         Car car2 = new Car();
-        Ticket ticket2 = smartParkingBoy.park(car2);
+        Ticket ticket2 = superParkingBoy.park(car2);
         Car car3 = new Car();
         // When
-        Ticket ticket3 = smartParkingBoy.park(car3);
+        Ticket ticket3 = superParkingBoy.park(car3);
         // Then
-        ParkingLot parkedParkingLot = smartParkingBoy.getParkingLotByTicket(ticket3);
+        ParkingLot parkedParkingLot = superParkingBoy.getParkingLotByTicket(ticket3);
         assertEquals(parkingLot2,parkedParkingLot);
     }
     @Test
@@ -93,6 +93,24 @@ public class SuperParkingBoyTest {
                 () -> superParkingBoy.fetch(usedTicket));
         // Then
         String expectedOutput = "Unrecognized parking ticket.";
+        assertThat(exception.getMessage()).isEqualTo(expectedOutput);
+    }
+    @Test
+    public void should_return_no_available_position_error_when_park_given_two_parking_lot_with_no_available_position(){
+        // Given
+        SuperParkingBoy superParkingBoy = new SuperParkingBoy();
+        ParkingLot parkingLot1 = new ParkingLot();
+        ParkingLot parkingLot2 = new ParkingLot();
+        superParkingBoy.addParkingLot(parkingLot1);
+        superParkingBoy.addParkingLot(parkingLot2);
+        for (int i=0;i<20;i++){
+            superParkingBoy.park(new Car());
+        }
+        // When
+        NoAvailablePositionException exception = assertThrows(NoAvailablePositionException.class,
+                () -> superParkingBoy.park(new Car()));
+        // Then
+        String expectedOutput = "No available position.";
         assertThat(exception.getMessage()).isEqualTo(expectedOutput);
     }
 }
