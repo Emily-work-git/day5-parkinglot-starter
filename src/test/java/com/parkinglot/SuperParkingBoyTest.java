@@ -77,4 +77,22 @@ public class SuperParkingBoyTest {
         String expectedOutput = "Unrecognized parking ticket.";
         assertThat(exception.getMessage()).isEqualTo(expectedOutput);
     }
+    @Test
+    public void should_return_unrecognized_ticket_error_when_fetch_given_two_parking_lot_and_a_used_ticket(){
+        // Given
+        SuperParkingBoy superParkingBoy = new SuperParkingBoy();
+        ParkingLot parkingLot1 = new ParkingLot();
+        ParkingLot parkingLot2 = new ParkingLot();
+        superParkingBoy.addParkingLot(parkingLot1);
+        superParkingBoy.addParkingLot(parkingLot2);
+        Car car = new Car();
+        Ticket usedTicket = superParkingBoy.park(car);
+        Car fetchedCar = superParkingBoy.fetch(usedTicket);
+        // When
+        UnrecognizedTicketException exception = assertThrows(UnrecognizedTicketException.class,
+                () -> superParkingBoy.fetch(usedTicket));
+        // Then
+        String expectedOutput = "Unrecognized parking ticket.";
+        assertThat(exception.getMessage()).isEqualTo(expectedOutput);
+    }
 }
