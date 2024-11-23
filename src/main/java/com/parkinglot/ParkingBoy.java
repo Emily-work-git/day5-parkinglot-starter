@@ -6,11 +6,10 @@ import java.util.List;
 import java.util.Map;
 
 public class ParkingBoy extends ParkingLot {
-    private List<ParkingLot> parkingLots = new ArrayList<>();
-    private Map<Ticket, ParkingLot> ticketToParkingLotRecord = new HashMap<>();
+    protected List<ParkingLot> parkingLots = new ArrayList<>();
+    protected Map<Ticket, ParkingLot> ticketToParkingLotRecord = new HashMap<>();
 
-    public void ParkingBoy() {
-    }
+    public void ParkingBoy() {}
 
     public void addParkingLot(ParkingLot parkingLot) {
         parkingLots.add(parkingLot);
