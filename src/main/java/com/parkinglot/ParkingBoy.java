@@ -17,7 +17,7 @@ public class ParkingBoy extends ParkingLot {
 
     public Ticket park(Car car) {
         for (int i = 0; i < parkingLots.size(); i++) {
-            if (parkingLots.get(i).getAvailableSlots() > 0) {
+            if (parkingLots.get(i).getAvailablePositions() > 0) {
                 Ticket ticket = parkingLots.get(i).park(car);
                 ticketToParkingLotRecord.put(ticket, parkingLots.get(i));
                 return ticket;

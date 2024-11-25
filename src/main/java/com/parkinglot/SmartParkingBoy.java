@@ -6,12 +6,12 @@ public class SmartParkingBoy extends ParkingBoy{
     public void SmartParkingBoy(){}
     @Override
     public Ticket park(Car car) {
-        ParkingLot parkingLotWithMaxSlots = parkingLots.stream().max(
-                Comparator.comparingInt(ParkingLot::getAvailableSlots)).
+        ParkingLot parkingLotWithMaxPositions = parkingLots.stream().max(
+                Comparator.comparingInt(ParkingLot::getAvailablePositions)).
                 orElseThrow(NoAvailablePositionException::new);
 
-        Ticket ticket = parkingLotWithMaxSlots.park(car);
-        ticketToParkingLotRecord.put(ticket, parkingLotWithMaxSlots);
+        Ticket ticket = parkingLotWithMaxPositions.park(car);
+        ticketToParkingLotRecord.put(ticket, parkingLotWithMaxPositions);
         return ticket;
     }
 

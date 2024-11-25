@@ -77,7 +77,7 @@ public class ParkingLotTest {
     public void should_print_no_available_position_error_when_park_given_full_parking_lot() {
         // Given
         ParkingLot parkingLot = new ParkingLot();
-        parkingLot.setAvailableSlots(0);
+        parkingLot.setAvailablePositions(0);
         Car car = new Car();
         // When
         NoAvailablePositionException exception = assertThrows(NoAvailablePositionException.class, () -> parkingLot.park(car));
